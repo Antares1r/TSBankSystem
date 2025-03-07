@@ -1,4 +1,4 @@
-import Account from './BankClass.ts'
+import Account from './AccClass.ts'
 import { AddUser, getUsers } from '../Database/Database.ts'
 
 interface IBank {

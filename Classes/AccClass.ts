@@ -14,7 +14,7 @@ export interface IAccount {
   password: string;
 }
 
-export class Account implements IAccount {
+export default class Account implements IAccount {
   id: string;
   isAdmin?: boolean;
   username: string;
