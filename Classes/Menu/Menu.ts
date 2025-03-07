@@ -45,8 +45,11 @@ export default class Menu {
     Deno.stdin.setRaw(false); // Reset terminal mode
   }
 
-  execute(index: number): void {
-    console.log(`Selected: ${this.menuEntrys[index]}`);
+  execute(action: menuOptions): void {
+    switch (action) {
+      case menuOptions.QUIT:
+        
+    }
   }
 
   menu(): void {
