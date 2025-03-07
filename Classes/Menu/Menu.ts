@@ -1,6 +1,13 @@
 
 import { Bank } from "../BankClass.ts";
 
+export enum menuOptions {
+  TRANSACTION = 'Transaction',
+  CSUBSCRIPTIONS = 'Current Subscriptions',
+  SETTINGS = 'Settings',
+  QUIT = 'Quit'
+}
+
 export default class Menu {
   menuIndex: number;
   menuEntrys: string[];
