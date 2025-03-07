@@ -1,0 +1,5 @@
+Todos:
+  1. Finish ./Database/Database.ts XXX
+  2. do the other Classes for the Menu stuff
+  3. Connect Acc Class Bank Class Menu Class and the Database with eachother
+  4. Fix the fucking deno panick
