@@ -48,7 +48,11 @@ export default class Menu {
   execute(action: menuOptions): void {
     switch (action) {
       case menuOptions.QUIT:
+
+        break;
+      case menuOptions.TRANSACTION:
         
+        break;
     }
   }
 
