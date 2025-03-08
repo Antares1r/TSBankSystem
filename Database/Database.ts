@@ -1,3 +1,4 @@
+// @ts-ignore
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 
 // Open or create the SQLite database
@@ -10,15 +11,16 @@ db.query(`
     isAdmin INTEGER CHECK (isAdmin IN (0, 1)), -- Enforces boolean-like values
     username TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+    money INTEGER NOT NULL
   )
 `);
 
-export function AddUser(username: string, email: string, password: string, isAdmin?: boolean) {
+export function AddUser( username: string, email: string, password: string, money: number, isAdmin?: boolean ) {
   isAdmin = isAdmin ?? false; // If undefined, default to false
   try {
-    db.query("INSERT INTO users (isAdmin, username, email, password) VALUES (?, ?, ?, ?)", 
-      [isAdmin ? 1 : 0, username, email, password]);
+    db.query("INSERT INTO users (isAdmin, username, email, password, money) VALUES (?, ?, ?, ?, ?)",
+      [isAdmin ? 1 : 0, username, email, password, money]);
     console.log(`User '${username}' added.`);
   } catch (error) {
     console.error(`Failed to add user '${username}':`, error.message);
@@ -30,8 +32,8 @@ export function getUsers(): any[] {
   return db.query("SELECT * FROM users");
 }
 
-AddUser(true, "test", "e", "123")
-AddUser("eta", "1345", "w45t")
+AddUser("test", "e", "123", 0, true)
+AddUser("eta", "1345", "w45t", 100)
 
 for (const obj of getUsers()) {
   console.log(obj);
