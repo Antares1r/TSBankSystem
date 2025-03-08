@@ -12,11 +12,13 @@ export default class Menu {
   menuIndex: number;
   menuEntrys: string[];
   menuTitle: string;
+  bank: Bank;
 
-  constructor(title: string, entries: string[]) {
+  constructor(title: string, entries: string[], bank: Bank) {
     this.menuTitle = title;
     this.menuEntrys = entries;
     this.menuIndex = 0;
+    this.bank = bank;
   }
 
   async registerInput(): Promise<void> {
@@ -35,7 +37,7 @@ export default class Menu {
 
       if (key === "\x1b[A") this.menuIndex = Math.max(0, this.menuIndex - 1); // Up
       else if (key === "\x1b[B") this.menuIndex = Math.min(this.menuEntrys.length - 1, this.menuIndex + 1); // Down
-      else if (key === "\r") {this.execute(this.menuIndex); break;} // Enter
+      else if (key === "\r") {this.execute(this.menuIndex); /*break;*/} // Enter
       else if (key === "q") break; // Quit
 
       console.clear();
@@ -45,13 +47,16 @@ export default class Menu {
     Deno.stdin.setRaw(false); // Reset terminal mode
   }
 
-  execute(action: menuOptions): void {
+  execute(actionIndex: number): void {
+    const action = menuOptions[actionIndex];
     switch (action) {
       case menuOptions.QUIT:
 
         break;
       case menuOptions.TRANSACTION:
-        
+        let u = deno.prompt("Username? ")
+        let a = deno.prompt("Username? ")
+        this.bank.Transaction(u, a);
         break;
     }
   }

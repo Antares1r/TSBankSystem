@@ -32,6 +32,16 @@ export function getUsers(): any[] {
   return db.query("SELECT * FROM users");
 }
 
+export function modifyValue(name: string, value: any, nameOfUser: string) {
+  const query = ` 
+    UPDATE users
+    SET ${name} = ?
+    WHERE username = ?;
+  `;
+  db.query(query, [value, nameOfUser]);
+}
+
+
 AddUser("test", "e", "123", 0, true)
 AddUser("eta", "1345", "w45t", 100)
 
@@ -43,4 +53,3 @@ for (const obj of getUsers()) {
 export function closeDB() {
   db.close();
 }
-
